@@ -31,7 +31,11 @@ app.use(handleError);
 mongoose
   .connect(DB_URL)
   .then((result) => {
-    app.listen(PORT, HOST);
+    const server = app.listen(PORT, HOST);
+    const io = require("./core/config/socket").init(server);
+    io.on("connection", (socket) => {
+      console.log("Client connected");
+    });
   })
   .catch((err) => {
     console.log(err);
