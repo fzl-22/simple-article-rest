@@ -68,7 +68,7 @@ exports.createPost = async (req, res, next) => {
     const user = await User.findById(req.userId);
     user.posts.push(post);
 
-    await user.save();
+    const savedUser = await user.save();
 
     // send created post to all user via websocket
     io.getIO().emit("posts", {
@@ -84,6 +84,8 @@ exports.createPost = async (req, res, next) => {
         name: user.name,
       },
     });
+
+    return savedUser;
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;

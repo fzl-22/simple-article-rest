@@ -4,7 +4,7 @@
   "description": "Rest API Basics",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require test/setup.js",
     "dev": "nodemon --env-file=.env app.js",
     "start": "node --env-file=.env app.js"
   },
@@ -22,6 +22,9 @@
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "chai": "^4.4.1",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.4",
+    "sinon": "^18.0.0"
   }
 }
